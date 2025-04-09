@@ -1,0 +1,182 @@
+:root{
+    /* using css variables in most higher element */
+    --background:#101114;
+    --primary-color:#1C1D20;
+    --secondary-color:#4A4D56;
+    --accent-color:#00FFC4;
+    --text-color:#F9F9F9;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 16pt;
+    color: var(--text-color);
+}
+
+body{
+    min-height: 100vh;
+    /* body has minimum 100 viewport height */
+    padding: 10px;
+    background-color: var(--background);
+    /* flex box to center the page horrizontally */
+    display: flex;
+    flex-direction: column;
+    /* aline the element vertically one below another */
+    align-items: center;
+}
+
+h1{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent-color);
+
+}
+.wrapper{
+    /* in larger devices it is 700px */
+    width: 700px;
+    /* on smaller devices it is 100% */
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+
+#todo-input{
+    box-sizing: border-box;
+    padding: 10px 20px;
+    width: 100%;
+    /* so that this width input field covers the entire width of wrapper div */
+    background-color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 1000px;
+    font: inherit;
+    /* inherits all fonts setting previously defined */
+    color: var(--text-color);
+    /* we have set the input elements color */
+    caret-color: var(--accent-color);
+    /* using carret color we have set the cursor color */
+
+}
+/* but as we click on input field border gets heighted   so to remove use following  pseudo property*/
+#todo-input:focus{
+    outline: none;
+}
+form{
+    position: relative;
+}
+
+#add-button{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-color: var(--accent-color);
+    height: 100%;
+    width: 15%;
+    padding: 0 30px;
+    border: none;
+    border-radius: 1000px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    
+
+}
+
+.todo{
+    margin-bottom: 10px;
+    padding: 0 30px;
+    background-color: var(--primary-color);
+    border-radius: 1000px;
+    display: flex;
+    align-items: center;
+}
+.todo .todo-text{
+    padding: 15px;
+    padding-right: 0;
+    flex-grow: 1;
+}
+
+.delete-button{
+    padding: 3px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.delete-button svg{
+    transition: 200ms ease;
+}
+
+.delete-button:hover svg{
+    fill: red;
+    /* background-color: red; */
+}
+
+.custom-checkbox{
+    border:2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* ~ is the sibling selector   */
+input[type="checkbox"]:checked ~ .custom-checkbox{
+    background-color: var(--accent-color);
+}
+/* this gives blue filled or same filled as box gets checked */
+
+input[type="checkbox"]:checked ~ .custom-checkbox  svg{
+    fill: var(--primary-color);
+}
+/* this above gives tick in svg in primary color */
+
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+
+/* lets hide checkbox */
+input[type="checkbox"]{
+    display: none;
+}
+    
+
+/* moving add button down to input field because smartphones having small screen */
+@media(max-width:500px){
+    /* this css code apply only on devices screen below 500px */
+    html{
+        font-size: 12pt;
+
+    }
+    #add-button{
+        position: unset;
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px;
+        height: auto;
+    }
+    h1{
+        margin-top: 50px;
+        font-size: 15vw;
+
+    }
+}
